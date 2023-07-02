@@ -57,8 +57,8 @@ const UserForm = () => {
         <Formik initialValues={initialValues} validate={validate} onSubmit={handleSubmit}>
             {({ errors, touched, values, handleChange }) => (
                 <Form className={'flex flex-col gap-4 justify-between p-2 md:py-4 md:px-8 w-full bg-white sm:w-[80%] lg:w-[50%] md:w-[70%] shadow shadow-lg h-full shadow-gray-400'}>
-                    <div>
-                        <div>
+                    <div className={'flex flex-col gap-4'}>
+                        <div className={'h-16'}>
                             <Field
                                 as={TextField}
                                 name="name"
@@ -66,11 +66,10 @@ const UserForm = () => {
                                 error={errors.name && touched.name}
                                 helperText={touched.name && errors.name}
                                 className={'w-full'}
-
                             />
                         </div>
 
-                        <div>
+                        <div className={'h-16'}>
                             <Field
                                 as={TextField}
                                 name="email"
@@ -81,7 +80,7 @@ const UserForm = () => {
                             />
                         </div>
 
-                        <div>
+                        <div className={'h-32'}>
                             <Field
                                 as={TextField}
                                 name="message"
@@ -94,7 +93,7 @@ const UserForm = () => {
                             />
                         </div>
 
-                        <div>
+                        <div className={'h-16'}>
                             <FormControl error={errors.country && touched.country} className={'w-full'}>
                                 <InputLabel id="country-label">Country</InputLabel>
                                 <Field as={Select} name="country" labelId="country-label" className={'w-full'}>
@@ -108,7 +107,7 @@ const UserForm = () => {
                             </FormControl>
                         </div>
 
-                        <div>
+                        <div className={'flex gap-4 items-center'}>
                             <FormControl component="fieldset" error={errors.gender && touched.gender} className={'flex'}>
                                 <RadioGroup name="gender" value={values.gender} onChange={handleChange} className={'flex'}>
                                     <FormControlLabel value="male" control={<Radio />} label="Male" />
@@ -118,30 +117,29 @@ const UserForm = () => {
                                     <FormHelperText>{errors.gender}</FormHelperText>
                                 )}
                             </FormControl>
-                        </div>
-
-                        <div>
-                            <FormControl error={errors.hobbies && touched.hobbies}
-                                         className={'w-full'}
-                            >
-                                <InputLabel id="hobbies-label">Hobbies</InputLabel>
-                                <Field
-                                    as={Select}
-                                    multiple
-                                    name="hobbies"
-                                    labelId="hobbies-label"
-                                    value={values.hobbies}
-                                    onChange={handleChange}
-                                    className={'w-full'}
+                            <div className={'w-full h-16'}>
+                                <FormControl error={errors.hobbies && touched.hobbies}
+                                             className={'w-full'}
                                 >
-                                    <MenuItem value="reading">Reading</MenuItem>
-                                    <MenuItem value="writing">Writing</MenuItem>
-                                    <MenuItem value="coding">Coding</MenuItem>
-                                </Field>
-                                {touched.hobbies && errors.hobbies && (
-                                    <FormHelperText>{errors.hobbies}</FormHelperText>
-                                )}
-                            </FormControl>
+                                    <InputLabel id="hobbies-label">Hobbies</InputLabel>
+                                    <Field
+                                        as={Select}
+                                        multiple
+                                        name="hobbies"
+                                        labelId="hobbies-label"
+                                        value={values.hobbies}
+                                        onChange={handleChange}
+                                        className={'w-full'}
+                                    >
+                                        <MenuItem value="reading">Reading</MenuItem>
+                                        <MenuItem value="writing">Writing</MenuItem>
+                                        <MenuItem value="coding">Coding</MenuItem>
+                                    </Field>
+                                    {touched.hobbies && errors.hobbies && (
+                                        <FormHelperText>{errors.hobbies}</FormHelperText>
+                                    )}
+                                </FormControl>
+                            </div>
                         </div>
                     </div>
                     <div className={'flex justify-center'}>
